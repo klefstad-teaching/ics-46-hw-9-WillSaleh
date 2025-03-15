@@ -9,8 +9,8 @@
 #include <cmath>
 #include <algorithm>
 
-extern vector<string> current_ladder;
-extern set<string> word_list;
+vector<string> current_ladder;
+set<string> word_list;
 
 void error(string word1, string word2, string msg) {
     cout << "Error: " << msg << "\n";
