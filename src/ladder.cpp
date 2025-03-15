@@ -99,7 +99,7 @@ vector<string> generate_word_ladder(const string &begin_word, const string &end_
                     if (word == end_word) {
                         return new_ladder;
                     }
-                    visited.insert(word);
+                    words_this_level.insert(word);  
                     ladder_queue.push(new_ladder);
                 }
             }
@@ -151,15 +151,13 @@ void print_word_ladder(const vector<string> &ladder) {
         cout << "No ladder found" << endl;
         return;
     }
-    auto it = ladder.begin();
-    cout << *it;
-    ++it;
-
-    while (it != ladder.end()) {
-        cout << " -> " << *it;
-        ++it;
+    cout << "Word ladder found: ";
+    for (size_t i = 0; i < ladder.size(); i++) {
+        cout << ladder[i];
+        if (i < ladder.size() - 1) {
+            cout << " ";
+        }
     }
-
     cout << endl;
 }
 
