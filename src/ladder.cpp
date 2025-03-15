@@ -27,7 +27,7 @@ void initialize_dp(vector<int> & prev, int len1) {
 //Computes edit distance 
 void compute_edit_distance(const string& str1, const string & str2, vector<int>& prev, vector<int>& curr, int j) {
     curr[0] = j;
-    for (int i = 1; i <= str1.size(); i++) {
+    for (size_t i = 1; i <= str1.size(); i++) {
         if (str1[i - 1] == str2[j - 1]) {
             curr[i] = prev[i - 1];
         } else {
@@ -99,8 +99,8 @@ vector<string> generate_word_ladder(const string &begin_word, const string &end_
                     if (word == end_word) {
                         return new_ladder;
                     }
+                    visited.insert(word);
                     ladder_queue.push(new_ladder);
-                    words_this_level.insert(word);
                 }
             }
         }
@@ -124,6 +124,7 @@ void load_words(set<string>& word_list, const string& file_name) {
     ifstream file(file_name);
     if (!file) {
         cerr << "Error" << file_name << endl;
+        exit(1);
     }
     string word;
     while (file >> word) {
