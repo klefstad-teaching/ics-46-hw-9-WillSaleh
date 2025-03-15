@@ -122,15 +122,28 @@ string to_lowercase(const string& word) {
 
 void load_words(set<string>& word_list, const string& file_name) {
     ifstream file(file_name);
+    
     if (!file) {
-        cerr << "Error" << file_name << endl;
-        exit(1);
+        cerr << "Error: Cannot open file " << file_name << endl;
+        exit(1); 
     }
+
     string word;
+    bool hasWords = false;
+
     while (file >> word) {
         word_list.insert(to_lowercase(word));
+        hasWords = true;
     }
+
     file.close();
+
+    if (!hasWords) {
+        cerr << "Error: Dictionary file is empty!\n";
+        exit(1); 
+    }
+
+    cout << "Loaded " << word_list.size() << " words.\n"; 
 }
 
 void print_word_ladder(const vector<string> &ladder) {
@@ -152,20 +165,24 @@ void print_word_ladder(const vector<string> &ladder) {
 
 void verify_word_ladder() {
     if (current_ladder.empty()) {
-        cout << "Invalid ladder";
+        cout << "Invalid ladder\n"; 
         return;
     }
 
+    cout << "Verifying ladder: ";
+    for (const auto& word : current_ladder) cout << word << " ";
+    cout << endl;
+
     for (size_t i = 1; i < current_ladder.size(); i++) {
         if (word_list.find(current_ladder[i]) == word_list.end()) {
-            cout << "Invalid ladder: Word" << current_ladder[i] << "not in the dictionary";
+            cout << "Invalid ladder: Word \"" << current_ladder[i] << "\" not in the dictionary\n"; 
             return;
         }
     }
 
     for (size_t i = 0; i < current_ladder.size() - 1; i++) {
         if (!is_adjacent(current_ladder[i], current_ladder[i + 1])) {
-            cout << "Invalid ladder: " << current_ladder[i] << " and " << current_ladder[i + 1] << " are not adjacent.";
+            cout << "Invalid ladder: \"" << current_ladder[i] << "\" and \"" << current_ladder[i + 1] << "\" are not adjacent.\n";
             return;
         }
     }
