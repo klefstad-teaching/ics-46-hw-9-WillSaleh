@@ -60,15 +60,13 @@ vector<int> extract_shortest_path(const vector<int> &, const vector<int> &previo
 
 void print_path(const vector<int>& v, int total) {
     if (v.empty()) {
-        cout << "\nTotal cost is "<< total << endl;
+        cout << "\nTotal cost is " << total << "\n";
         return;
     }
 
     for (size_t i = 0; i < v.size(); i++) {
-        cout << v[i];
-        if (i < v.size() - 1) cout << " ";  
+        cout << v[i] << " ";  
     }
-    cout << endl;
 
-    cout << "Total cost is " << total << endl;
+    cout << "\nTotal cost is " << total << "\n"; 
 }
