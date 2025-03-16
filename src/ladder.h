@@ -7,10 +7,7 @@
 #include <string>
 #include <cmath>
 
-using namespace std;
-
-extern std::vector<std::string> current_ladder; 
-extern std::set<std::string> word_list;        
+using namespace std;     
 
 void error(string word1, string word2, string msg);
 bool edit_distance_within(const std::string& str1, const std::string& str2, int d);
